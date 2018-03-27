@@ -86,3 +86,18 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+/*
+ * Import de bootstrap par l'URL 'http://localhost:8100/build/bootstrap.min.css'.
+ * Cette URL est déduite de valeurs par défaut gérées dans Ionic. Les fichiers du
+ * dossier './config' sont absolument nécessaires pour faire fonctionner cet import.
+ * 
+ * Pourquoi ?
+ * -> Il faut que les fichiers de bootstrap soient téléchargés. Dans une application
+ * Ionic seul le dossier './www' peut être utilisé pour télécharger les fichiers de
+ * l'application. Il n'est donc pas possible d'importer un script ou style depuis
+ * le dossier node_modules. Le dossier build contient le résultat des fichiers produits
+ * par tous les scripts Ionic (dont 'copy' et 'sass'). Le dossier assets contient toutes
+ * les ressources présentes dans './src/assets'.
+ */
+@import "bootstrap.min.css";
