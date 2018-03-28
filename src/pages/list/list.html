@@ -1,3 +1,6 @@
 <ion-content padding>
-
+    <h2>Liste des articles :</h2>
+    <blog-article *ngFor="let article of list; index as i"
+        [article]="article" (onModify)="modify($event, i)"
+        (onDelete)="delete($event, i)"></blog-article>
 </ion-content>
