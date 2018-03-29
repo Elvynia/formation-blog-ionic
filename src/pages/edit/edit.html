@@ -1,5 +1,5 @@
 <ion-content padding>
-    <blog-article-edit [editArticle]="editArticle"
-        (onCreate)="create($event)"
-        (onUpdate)="update($event)"></blog-article-edit>
+    <blog-article-edit [article]="editArticle"
+        (onCreate)="handleNav()"
+        (onUpdate)="handleNav()"></blog-article-edit>
 </ion-content>

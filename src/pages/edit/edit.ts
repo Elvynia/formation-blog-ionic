@@ -15,17 +15,6 @@ export class EditPage {
 		this.editArticle = this.navParams.data.edit || new Article();
 	}
 
-	create(article: Article) {
-		this.navCtrl.getPrevious().data.create = article;
-		this.handleNav();
-	}
-
-	update(article: Article) {
-		this.navCtrl.getPrevious().data.update = article;
-		this.navCtrl.getPrevious().data.edit = undefined;
-		this.handleNav();
-	}
-
 	private handleNav() {
 		if (this.navCtrl.length() > 1) {
 			this.navCtrl.pop();

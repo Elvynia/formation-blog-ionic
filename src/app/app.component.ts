@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { ArticleService } from 'betterblog';
 
 import { NAV_LIST, NAV_CREATE, NAV_CONTACT, NAV_HOME } from 'betterblog';
 
@@ -16,8 +17,10 @@ import { ContactPage } from '../pages/contact/contact';
 export class MyApp {
 	rootPage: any = HomePage;
 
-	constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+	constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
+		private articleService: ArticleService) {
 		platform.ready().then(() => {
+			this.articleService.initialize();
 			// Okay, so the platform is ready and our plugins are available.
 			// Here you can do any higher level native things you might need.
 			statusBar.styleDefault();
