@@ -11,8 +11,12 @@ import { ListPage } from '../pages/list/list';
 import { EditPage } from '../pages/edit/edit';
 import { ContactPage } from '../pages/contact/contact';
 
+// Ce fichier comporte le composant Angular racine généré et utilisé par Ionic pour démarrer l'application.
 @Component({
 	templateUrl: 'app.html'
+	// Pas de 'styles' ou 'styleUrls' dans Ionic, les fichiers SASS sont nommés de manière identique
+	// à la classe TypeScript qui décrit le component. Il est possible de développer avec des fichiers
+	// CSS mais cela est déconseillé par Ionic (option à utiliser avec la commande 'ionic start').
 })
 export class MyApp {
 	rootPage: any = HomePage;
@@ -66,6 +70,11 @@ export class MyApp {
 		});
 	}
 
+	/*
+	 * Cette fonction est déclenchée lorsque 'blog-navbar' emet l'événement 'onNavigate'.
+	 * L'action effectué est un changement de valeur de la propriété 'rootPage' utilisée
+	 * en "attribute directive" ( == "property binding" == "@Input()") sur le component 'ion-nav'.
+	 */
 	navigate(path: string) {
 		if (path === NAV_HOME) {
 			this.rootPage = HomePage;
@@ -78,5 +87,8 @@ export class MyApp {
 		} else {
 			console.error('Navigation path %s not managed by ion-blog...', path);
 		}
+		// Lorsqu'une valeur de 'this' est changée, Angular détecte un changement de propriété et relance
+		// un cycle de détection de changement (grâce au service ChangeDetectorRef). Cela entraine une 
+		// réévaluation des expressions dans les différentes templates HTML.
 	}
 }

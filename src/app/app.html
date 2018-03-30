@@ -2,4 +2,21 @@
     <blog-navbar title="Ion Blog !" (onNavigate)="navigate($event)"></blog-navbar>
 </ion-header>
 <button class="json" ion-button full (click)="loadData()">Charger le fichier JSON</button>
+<!-- FONCTIONNALITE IMPORTANTE D'IONIC 
+	Cet élément est un component Ionic qui permet de fournir (propriété 'providers' du component)
+	le service NavController (c.f. ../pages/home/home.ts). Le rôle de ce component est de gérer une pile
+	de pages "naviguables", c'est à dire gérer une page courante et les pages précédentes/suivantes.
+	Chaque événement de navigation donne lieu à une transition (qui consiste surtout en l'animation
+	entre deux page). Il ne peut il y avoir qu'un seul événement de transition à la fois dans Ionic.
+	Il faut donc bien vérifier que chaque appel à une fonction de NavController ne peut pas être appelé
+	en même temps qu'un autre.
+
+	L'attribute directive 'root' permet de définir la racine de la pile de page naviguable. C'est le
+	même mécanisme que 'NavController.setRoot(...)' lorsque la valeur passée à cette directive change.
+	Il existe deux autres attributs :
+		- name : permet de donner un nom unique pour différencier plusieurs 'ion-nav'
+		- rootParams : les paramètres de navigation à donner à rootPage.
+
+	Plus de détails : https://ionicframework.com/docs/api/components/nav/Nav/
+-->
 <ion-nav [root]="rootPage"></ion-nav>
