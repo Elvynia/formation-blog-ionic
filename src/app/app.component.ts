@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { ArticleService } from 'betterblog';
 
-import { NAV_LIST, NAV_CREATE, NAV_CONTACT, NAV_HOME } from 'betterblog';
+import { ArticleService, NAV_LIST, NAV_CREATE, NAV_CONTACT, NAV_HOME } from 'betterblog';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { EditPage } from '../pages/edit/edit';
 import { ContactPage } from '../pages/contact/contact';
+import { StorageArticleService } from '../providers/storage-article-service/storage-article-service';
 
 // Ce fichier comporte le composant Angular racine généré et utilisé par Ionic pour démarrer l'application.
 @Component({
@@ -22,7 +22,7 @@ export class MyApp {
 	rootPage: any = HomePage;
 
 	constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
-		private alertCtrl: AlertController, private articleService: ArticleService) {
+		private alertCtrl: AlertController, private _articleService: ArticleService) {
 		platform.ready().then(() => {
 			// Okay, so the platform is ready and our plugins are available.
 			// Here you can do any higher level native things you might need.
@@ -31,8 +31,16 @@ export class MyApp {
 		});
 	}
 
+	public get articleService(): StorageArticleService {
+		return <StorageArticleService>this._articleService;
+	}
+
 	loadData() {
-		this.articleService.initialize().subscribe({
+		this.articleService.initialize();
+	}
+
+	loadJSON() {
+		this.articleService.loadJSON().subscribe({
 			error: (response) => {
 				/* Le service AlertController permet de préparer et gérer des fenêtre pop-up simplement.
 				 * La fonction create permet de préparer une pop-up en décrivant des propriétés. Les
@@ -68,6 +76,10 @@ export class MyApp {
 				alert.present();
 			}
 		});
+	}
+
+	saveData() {
+		this.articleService.save();
 	}
 
 	/*

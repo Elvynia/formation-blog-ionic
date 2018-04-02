@@ -1,11 +1,20 @@
 // http://ionicframework.com/docs/theming/
 
 div.scroll-content {
-    margin-top: 100px;
+    margin-top: 120px;
 }
 
-button.json {
+div.load {
 	margin-top: 50px;
-	/* La navbar est à 10 et la page à 1, il faut donc être entre les deux. */
-	z-index: 2;
+	height: 60px;
+	
+	button {
+		/* La navbar est à 10 et la page à 1, il faut donc être entre les deux. */
+		z-index: 2;
+	}
+
+	div.bdd {
+		display: flex;
+    	justify-content: center;
+	}
 }

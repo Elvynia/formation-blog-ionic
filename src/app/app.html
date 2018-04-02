@@ -1,7 +1,14 @@
 <ion-header>
     <blog-navbar title="Ion Blog !" (onNavigate)="navigate($event)"></blog-navbar>
 </ion-header>
-<button class="json" ion-button full (click)="loadData()">Charger le fichier JSON</button>
+<div class="load">
+	<button ion-button full (click)="loadJSON()">Charger le fichier JSON</button>
+	<div class="bdd">
+		<button ion-button (click)="loadData()">Charger</button>
+		<button ion-button (click)="saveData()">Sauvegarder</button>
+	</div>
+</div>
+
 <!-- FONCTIONNALITE IMPORTANTE D'IONIC 
 	Cet élément est un component Ionic qui permet de fournir (propriété 'providers' du component)
 	le service NavController (c.f. ../pages/home/home.ts). Le rôle de ce component est de gérer une pile

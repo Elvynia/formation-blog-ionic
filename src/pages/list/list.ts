@@ -22,19 +22,6 @@ export class ListPage {
 		});
 	}
 
-	ionViewDidEnter() {
-		let data = this.navParams.data;
-		if (data.create) {
-			this.list.push(data.create);
-			data.create = undefined;
-		}
-		if (data.update) {
-			let index = this.list.findIndex((a) => a.id === data.update.id);
-			this.list.splice(index, 1, data.update);
-			data.update = undefined;
-		}
-	}
-
 	modify(id: number, index: number) {
 		this.navCtrl.push(EditPage, {
 			edit: this.list[index]
@@ -42,6 +29,6 @@ export class ListPage {
 	}
 
 	delete(id: number, index: number) {
-		this.list.splice(index, 1);
+		this.articleService.delete(id);
 	}
 }

@@ -3,13 +3,15 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { BlogLibModule } from 'betterblog';
+import { IonicStorageModule } from '@ionic/storage';
+import { BlogLibModule, ArticleService } from 'betterblog';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { EditPage } from '../pages/edit/edit';
 import { ContactPage } from '../pages/contact/contact';
+import { StorageArticleService } from '../providers/storage-article-service/storage-article-service';
 
 @NgModule({
 	declarations: [
@@ -22,6 +24,7 @@ import { ContactPage } from '../pages/contact/contact';
 	imports: [
 		BrowserModule,
 		IonicModule.forRoot(MyApp),
+		IonicStorageModule.forRoot(),
 		BlogLibModule
 	],
 	bootstrap: [IonicApp],
@@ -35,7 +38,8 @@ import { ContactPage } from '../pages/contact/contact';
 	providers: [
 		StatusBar,
 		SplashScreen,
-		{ provide: ErrorHandler, useClass: IonicErrorHandler }
+		{ provide: ErrorHandler, useClass: IonicErrorHandler },
+    	{ provide: ArticleService, useClass: StorageArticleService}
 	]
 })
 export class AppModule { }
