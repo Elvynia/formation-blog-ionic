@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Article } from 'betterblog';
+import { Article, ArticleService } from 'betterblog';
 import { ListPage } from '../list/list';
 
 @IonicPage()
@@ -11,8 +11,17 @@ import { ListPage } from '../list/list';
 export class EditPage {
 	editArticle: Article;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams) {
+	constructor(public navCtrl: NavController, public navParams: NavParams,
+		private articleService: ArticleService) {
 		this.editArticle = this.navParams.data.edit || new Article();
+	}
+
+	create(article: Article) {
+		this.articleService.create(article).subscribe(() => this.handleNav());
+	}
+
+	update(article: Article) {
+		this.articleService.update(article).subscribe(() => this.handleNav());
 	}
 
 	/*
